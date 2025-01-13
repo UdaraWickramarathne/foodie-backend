@@ -26,7 +26,6 @@ public class ProductService {
         product.setImageName(imageFile.getOriginalFilename());
         product.setImageData(imageFile.getBytes());
         productRepository.save(product);
-
         return "Product added successfully!";
 
     }
@@ -37,5 +36,16 @@ public class ProductService {
 
     public List<ProductDTO> getAllProductsWithoutImage() {
         return productRepository.findAllWithoutImageData();
+    }
+
+    public Product updateProduct(int id, Product product, MultipartFile imageFile) throws IOException {
+        product.setImageType(imageFile.getContentType());
+        product.setImageName(imageFile.getOriginalFilename());
+        product.setImageData(imageFile.getBytes());
+        return productRepository.save(product);
+    }
+
+    public void deleteProduct(int id) {
+        productRepository.deleteById(id);
     }
 }
