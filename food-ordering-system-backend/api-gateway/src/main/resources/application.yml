@@ -1,3 +1,4 @@
+
 spring:
   cloud:
     gateway:
@@ -6,7 +7,6 @@ spring:
           uri: lb://AUTH-SERVICE
           predicates:
             - Path=/auth/**
-
         - id: food-service
           uri: lb://FOOD-SERVICE
           predicates:
@@ -14,10 +14,24 @@ spring:
           filters:
             - AuthenticationFilter
 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
   application:
     name: API-GATEWAY
 
 eureka:
   client:
     service-url:
-      defaultZone : http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
