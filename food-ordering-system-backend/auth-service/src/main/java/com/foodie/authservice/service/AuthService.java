@@ -18,25 +18,25 @@ public class AuthService {
     @Autowired
     private JwtService jwtService;
 
-    public String saveUser(UserCredential userCredential) {
+    public void saveUser(UserCredential userCredential) {
 
-        if(userCredentialRepository.findByUsername(userCredential.getUsername()).isPresent()) {
-            return "Username already exists";
+        if (userCredentialRepository.findByUsername(userCredential.getUsername()).isPresent()) {
+            throw new IllegalArgumentException("Username already exists");
         }
         userCredential.setPassword(passwordEncoder.encode(userCredential.getPassword()));
         userCredentialRepository.save(userCredential);
-        return "User saved successfully";
     }
 
 
-    public String generateToken(String username) {
+    public String loginUser(String username) {
         String userId = userCredentialRepository.findUserIdByUsername(username).toString();
         return jwtService.generateToken(userId);
     }
 
-    public String validateToken(String token) {
+    public boolean validateToken(String token) {
         String id = jwtService.extractUserId(token);
         System.out.println(id);
-        return jwtService.validateToken(token) ? "Token is valid" : "Token is invalid";
+        return jwtService.validateToken(token);
     }
+
 }
