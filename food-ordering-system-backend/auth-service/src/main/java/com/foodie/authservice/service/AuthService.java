@@ -35,8 +35,11 @@ public class AuthService {
 
     public boolean validateToken(String token) {
         String id = jwtService.extractUserId(token);
-        System.out.println(id);
         return jwtService.validateToken(token);
+    }
+
+    public String getUserIdFromToken(String token) {
+        return jwtService.extractUserId(token);
     }
 
 }

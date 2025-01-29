@@ -60,10 +60,12 @@ public class AuthController {
 
             if (authenticate.isAuthenticated()) {
                 String token = authService.loginUser(authRequest.getUsername());
+                String userId = authService.getUserIdFromToken(token);
                 return ResponseEntity.ok(Map.of(
                         "success", true,
                         "message", "User authenticated successfully",
-                        "token", token
+                        "token", token,
+                        "userId", userId
                 ));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -87,9 +89,11 @@ public class AuthController {
         try {
             boolean isValid = authService.validateToken(token);
             if (isValid) {
+                String userId = authService.getUserIdFromToken(token);
                 return ResponseEntity.ok(Map.of(
                         "success", true,
-                        "message", "Token is valid"
+                        "message", "Token is valid",
+                        "userId", userId
                 ));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -98,6 +102,13 @@ public class AuthController {
                                 "message", "Token is invalid"
                         ));
             }
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of(
+                            "success", false,
+                            "message", "Invalid token format",
+                            "error", e.getMessage()
+                    ));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of(
@@ -107,5 +118,6 @@ public class AuthController {
                     ));
         }
     }
+
 
 }

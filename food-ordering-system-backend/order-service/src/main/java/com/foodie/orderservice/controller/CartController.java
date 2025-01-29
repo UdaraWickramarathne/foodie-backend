@@ -15,7 +15,7 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @PostMapping("/{customerId}/add")
+    @PostMapping("/{customerId}/items")
     public ResponseEntity<Cart> addToCart(
             @PathVariable int customerId,
             @RequestParam int productId,
@@ -42,10 +42,10 @@ public class CartController {
     }
 
     //remove cart item
-    @DeleteMapping("/{customerId}/remove")
+    @DeleteMapping("/{customerId}/items/{productId}")
     public ResponseEntity<Cart> removeFromCart(
             @PathVariable int customerId,
-            @RequestParam int productId
+            @PathVariable int productId
     ) {
         try {
             Cart updatedCart = cartService.removeFromCart(customerId, productId).getBody();
@@ -56,7 +56,7 @@ public class CartController {
     }
 
     //update product item quantity
-    @PatchMapping("/{customerId}/update/{productId}")
+    @PatchMapping("/{customerId}/items/{productId}")
     public ResponseEntity<Cart> updateProductQuantity(
             @PathVariable int customerId,
             @PathVariable int productId,
