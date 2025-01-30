@@ -48,5 +48,9 @@ public class OrderController {
         return ResponseEntity.ok(updatedOrders);
     }
 
-
+    @GetMapping("/pending")
+    public ResponseEntity<List<Orders>> getPendingOrders() {
+        List<Orders> orders = orderService.getPendingOrders();
+        return ResponseEntity.ok(orders);
+    }
 }

@@ -55,4 +55,8 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public List<Orders> getPendingOrders() {
+        return orderRepository.findByStatus(OrderStatus.PENDING);
+    }
+
 }

@@ -30,11 +30,14 @@ public class AuthService {
 
     public String loginUser(String username) {
         String userId = userCredentialRepository.findUserIdByUsername(username).toString();
+        System.out.println(userId);
+
         return jwtService.generateToken(userId);
     }
 
     public boolean validateToken(String token) {
         String id = jwtService.extractUserId(token);
+
         return jwtService.validateToken(token);
     }
 
