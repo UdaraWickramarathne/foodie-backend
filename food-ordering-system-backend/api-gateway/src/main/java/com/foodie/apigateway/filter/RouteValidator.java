@@ -14,6 +14,9 @@ public class RouteValidator {
     public static final List<Pattern> openApiEndpoints = List.of(
             Pattern.compile("/auth/register"),
             Pattern.compile("/auth/login"),
+            Pattern.compile("/admin/register"),
+            Pattern.compile("/admin/login"),
+            Pattern.compile("/admin/greet"),
             Pattern.compile("/food/products"),
             Pattern.compile("/food/products/search"),
             Pattern.compile("/food/product/\\d+/image"), // Dynamic pattern for productId

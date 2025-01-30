@@ -33,6 +33,7 @@ public class AuthConfig {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("auth/login", "auth/register", "auth/validate", "auth/greet").permitAll()
+                        .requestMatchers("admin/login", "admin/register").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(Customizer.withDefaults())
