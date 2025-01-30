@@ -15,6 +15,11 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
     @PostMapping("/{customerId}/items")
     public ResponseEntity<Cart> addToCart(
             @PathVariable int customerId,

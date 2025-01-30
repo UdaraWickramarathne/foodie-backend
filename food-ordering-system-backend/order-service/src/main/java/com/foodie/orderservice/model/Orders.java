@@ -1,7 +1,4 @@
 package com.foodie.orderservice.model;
-
-
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,11 +19,10 @@ public class Orders {
     private int userId;
     private int cartId;
     private double totalAmount;
+    private String orderDetails;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     private String address;
-    private String paymentMode;
     private Date createdAt;
-
 }
