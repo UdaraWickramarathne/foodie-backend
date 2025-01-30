@@ -15,6 +15,7 @@ public class RouteValidator {
             Pattern.compile("/auth/register"),
             Pattern.compile("/auth/login"),
             Pattern.compile("/food/products"),
+            Pattern.compile("/food/products/search"),
             Pattern.compile("/food/product/\\d+/image"), // Dynamic pattern for productId
             Pattern.compile("/food/product/\\d+"),       // Dynamic pattern for id
             Pattern.compile("/eureka")

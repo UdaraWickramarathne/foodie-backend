@@ -82,4 +82,10 @@ public class ProductController {
         return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
     }
 
+    @GetMapping("/products/search")
+    public ResponseEntity<List<ProductDTO>> searchProduct(@RequestParam String keyword) {
+        List<ProductDTO> products = service.searchProducts(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
 }

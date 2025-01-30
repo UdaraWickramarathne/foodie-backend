@@ -11,16 +11,26 @@
         <module name="service-registry" />
         <module name="food-service" />
       </profile>
-      <profile name="Annotation profile for notification-service" enabled="true">
+      <profile name="Annotation profile for payment-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath>
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
-        <module name="orders-service" />
-        <module name="notification-service" />
         <module name="auth-service" />
+        <module name="notification-service" />
+        <module name="payment-service" />
+      </profile>
+      <profile name="Annotation profile for orders-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath>
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="orders-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -31,6 +41,7 @@
       <module name="food-service" options="-parameters" />
       <module name="notification-service" options="-parameters" />
       <module name="orders-service" options="-parameters" />
+      <module name="payment-service" options="-parameters" />
       <module name="service-registry" options="-parameters" />
     </option>
   </component>
