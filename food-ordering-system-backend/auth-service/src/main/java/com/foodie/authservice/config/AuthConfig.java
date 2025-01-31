@@ -32,7 +32,7 @@ public class AuthConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("auth/login", "auth/register", "auth/validate", "auth/greet").permitAll()
+                        .requestMatchers("auth/login", "auth/register", "auth/validate", "auth/email/{userId}").permitAll()
                         .requestMatchers("admin/login", "admin/register").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
