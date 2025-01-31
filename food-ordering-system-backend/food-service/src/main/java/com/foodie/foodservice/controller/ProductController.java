@@ -12,8 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-@CrossOrigin
+@RequestMapping("/food")
 public class ProductController {
 
     private final ProductService service;
@@ -56,6 +55,37 @@ public class ProductController {
             e.printStackTrace();
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("/product/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable int id, @RequestPart Product product, @RequestPart MultipartFile imageFile) {
+        Product updatedProduct = null;
+        try {
+            updatedProduct = service.updateProduct(id, product, imageFile);
+            if(updatedProduct == null) {
+                return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable int id) {
+        Product product = service.getProduct(id);
+        if(product == null) {
+            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+        }
+        service.deleteProduct(id);
+        return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
+    }
+
+    @GetMapping("/products/search")
+    public ResponseEntity<List<ProductDTO>> searchProduct(@RequestParam String keyword) {
+        List<ProductDTO> products = service.searchProducts(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
 }

@@ -1,0 +1,55 @@
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/** , /admin/**
+
+        - id: food-service
+          uri: lb://FOOD-SERVICE
+          predicates:
+            - Path=/food/**
+          filters:
+            - AuthenticationFilter
+
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/cart/** , /orders/**
+          filters:
+            - AuthenticationFilter
+
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payments/**
+          filters:
+            - AuthenticationFilter
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5173"
+              - "http://localhost:5174"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+              - PATCH
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+  application:
+    name: API-GATEWAY
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
