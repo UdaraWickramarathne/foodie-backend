@@ -18,18 +18,10 @@
         <processorPath>
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
-        <module name="auth-service" />
-        <module name="notification-service" />
-        <module name="payment-service" />
-      </profile>
-      <profile name="Annotation profile for orders-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath>
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
         <module name="orders-service" />
+        <module name="auth-service" />
+        <module name="payment-service" />
+        <module name="notification-service" />
       </profile>
     </annotationProcessing>
   </component>
