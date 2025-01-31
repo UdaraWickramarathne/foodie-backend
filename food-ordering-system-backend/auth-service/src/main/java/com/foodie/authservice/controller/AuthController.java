@@ -119,5 +119,22 @@ public class AuthController {
         }
     }
 
+    @GetMapping("/email/{userId}")
+    public ResponseEntity<?> getEmail(@PathVariable String userId) {
+        try {
+            String email = authService.getEmail(userId);
+            return ResponseEntity.ok(Map.of(
+                    "email", email
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of(
+                            "success", false,
+                            "message", "Error fetching email",
+                            "error", e.getMessage()
+                    ));
+        }
+    }
+
 
 }

@@ -45,4 +45,7 @@ public class AuthService {
         return jwtService.extractUserId(token);
     }
 
+    public String getEmail(String userId) {
+        return userCredentialRepository.findEmailByUserId(Integer.parseInt(userId));
+    }
 }

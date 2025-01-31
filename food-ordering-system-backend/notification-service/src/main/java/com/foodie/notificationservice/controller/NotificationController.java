@@ -18,7 +18,7 @@ public class NotificationController {
     @Autowired
     private NotificationService notificationService;
 
-    @PostMapping("/create-and-send")
+    @PostMapping("/send")
     public ResponseEntity<String> createAndSendNotification(
             @RequestParam String title,
             @RequestParam String message,
