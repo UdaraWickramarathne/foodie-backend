@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/foodie-backend.iml" filepath="$PROJECT_DIR$/.idea/foodie-backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/food-ordering-system-backend/order-service/orders-service.iml" filepath="$PROJECT_DIR$/food-ordering-system-backend/order-service/orders-service.iml" />
-    </modules>
-  </component>
-</project>
